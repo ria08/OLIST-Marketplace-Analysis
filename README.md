@@ -41,10 +41,10 @@ Find bottlenecks in the order-to-delivery pipeline and highlight **top-performin
 - ⏱ **Approval to Shipment Lag**
 - ❌ **Delayed Delivery Rate**
 - 💰 **Revenue per Seller**
-- 🔁 **Return Rate** based on review scores
+
 
 **Deliverable:**  
-Interactive Power BI dashboard with KPIs, drill-down filters, and geographic breakdowns.
+Interactive Power BI dashboard with KPIs, insightful charts, and executive summary.
 
 ---
 
@@ -54,7 +54,7 @@ Interactive Power BI dashboard with KPIs, drill-down filters, and geographic bre
 Identify the most valuable customers using **Total Spend**, **Order Frequency**, and **Recency**.
 
 #### 🔍 Metrics:
-- **Total Spend = Price + Freight**
+- **Total Spend = Price + Freight or Payment Value**
 - **Order Frequency = # of Orders per Customer**
 - **Recency = Days since last purchase**
 
@@ -81,20 +81,19 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 
 ## 🛠 Tools & Technologies
 
-- **Python** (Pandas, NumPy, SciPy, Matplotlib, Seaborn)
-- **Power BI** (KPI Cards, Bar Charts, Maps, Scorecards)
-- **A/B Testing** (T-tests, Chi-Square)
+- **Python** (Pandas, NumPy, Matplotlib, Seaborn)
+- **Power BI** (KPI Cards, Bar Charts, Line Charts, Scorecards)
+- **A/B Testing** (T-tests)
 - **Customer Segmentation** (RFM Analysis)
-- **SQL** (Exploration & joins - optional preprocessing)
 
 ---
 
 ## 📌 Key Business Insights
 
 - 💳 **Credit Card users spend ~20% more** on average than Boleto/Voucher users.
-- ⏳ **Delivery delays and shipping lag** vary significantly by seller and product category.
-- 🧲 **Big Spenders & Loyal Customers** account for the majority of revenue — critical segment for loyalty efforts.
-- ⚠️ **At-Risk customers** form a sizable chunk, representing a retention opportunity.
+- ⏳ **Average delivery time is 11.4 days, with a noticeable 7.7% delay rate.** Increase focus on last-mile logistics to reduce delays.
+- 🧲 **Big Spenders & Loyal Customers** account for the majority of revenue and are critical segment for loyalty efforts.
+- ⚠️ **At-Risk customers** form a sizeable share, representing a retention opportunity.
 
 ---
 
@@ -102,7 +101,7 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 
 - 📌 Power BI dashboard includes:
   - Delivery metrics across seller, state, and category
-  - Top performing sellers and high-return categories
+  - Top performing sellers and categories
   - Dynamic filters for segmenting customer insights
   - Clean KPI cards for executive-level reporting
 
