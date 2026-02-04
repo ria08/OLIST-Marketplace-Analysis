@@ -1,14 +1,14 @@
 
 
-# 📦 Olist Marketplace Data Analysis & Insights
+# Olist Marketplace Data Analysis & Insights
 
-## 🚀 Project Overview
+## Project Overview
 
 This project analyzes the Olist Brazilian eCommerce dataset to identify delivery bottlenecks, evaluate customer value, and run A/B testing experiments. The goal is to support Olist in improving conversion rates, delivery reliability, and customer retention through data-driven insights and Power BI dashboards.
 
 ---
 
-## 🧠 Problem Statement
+## Problem Statement
 
 Olist, a Brazilian e-commerce marketplace, has received concerns from sellers regarding delayed deliveries and declining customer conversion rates. The company aims to:
 
@@ -18,9 +18,9 @@ Olist, a Brazilian e-commerce marketplace, has received concerns from sellers re
 
 ---
 
-## 📊 Tasks & Business Objectives
+## Tasks & Business Objectives
 
-### 🧪 Task 1: A/B Testing — Payment Method vs Order Value
+### Task 1: A/B Testing — Payment Method vs Order Value
 
 **Objective:**  
 Determine whether customers using Credit Cards (Group A) spend more than those using Boleto/Voucher (Group B).
@@ -31,7 +31,7 @@ Determine whether customers using Credit Cards (Group A) spend more than those u
 
 ---
 
-### 🚚 Task 2: Delivery Bottleneck Analysis + Top Performers
+### Task 2: Delivery Bottleneck Analysis + Top Performers
 
 **Objective:**  
 Find bottlenecks in the order-to-delivery pipeline and highlight top-performing sellers and product categories.
@@ -48,17 +48,17 @@ Interactive Power BI dashboard with KPIs, insightful charts, and executive summa
 
 ---
 
-### 👥 Task 3: Customer Segmentation & Value Analysis
+### Task 3: Customer Segmentation & Value Analysis
 
 **Objective:**  
 Identify the most valuable customers using Total Spend, Order Frequency, and Recency.
 
-#### 🔍 Metrics:
+#### Metrics:
 - **Total Spend** = Price + Freight or Payment Value
 - **Order Frequency** = # of Orders per Customer
 - **Recency = Days since last purchase
 
-#### 🧮 Method:
+#### Method:
 - Applied RFM Scoring (Recency, Frequency, Monetary) using quantiles
 - Classified customers into groups:
   - 🏆 **Top Customers**
@@ -72,14 +72,14 @@ Visualized RFM segments and generated business recommendations for retention and
 
 ---
 
-## 📁 Dataset Used
+## Dataset Used
 
 Brazilian E-Commerce Public Dataset by Olist, available on Kaggle  
 [🔗 Dataset Link](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
 
-## 🛠 Tools & Technologies
+## Tools & Technologies
 
 - **Python** (Pandas, NumPy, Matplotlib, Seaborn)
 - **Power BI** (KPI Cards, Bar Charts, Line Charts, Scorecards)
@@ -88,7 +88,7 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 
 ---
 
-## 📌 Key Business Insights
+## Key Business Insights
 
 - 💳 **Credit Card users spend ~20% more** on average than Boleto/Voucher users.
 - ⏳ **Average delivery time is 11.4 days, with a noticeable 7.7% delay rate.** Increase focus on last-mile logistics to reduce delays.
@@ -97,7 +97,7 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 
 ---
 
-## 📈 Visual Highlights
+## Visual Highlights
 
 - 📌 Power BI dashboard includes:
   - Delivery metrics across seller, state, and category
