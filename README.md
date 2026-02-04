@@ -90,16 +90,16 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 
 ## Key Business Insights
 
-- 💳 **Credit Card users spend ~20% more** on average than Boleto/Voucher users.
-- ⏳ **Average delivery time is 11.4 days, with a noticeable 7.7% delay rate.** Increase focus on last-mile logistics to reduce delays.
-- 🧲 **Big Spenders & Recent Buyers** account for the majority of revenue and are critical segment for loyalty efforts.
-- ⚠️ **At-Risk customers** form a sizeable share, representing a retention opportunity.
+- 💳 Credit Card users spend ~20% more on average than Boleto/Voucher users.
+- ⏳ Average delivery time is 11.4 days, with a noticeable 7.7% delay rate. Increase focus on last-mile logistics to reduce delays.
+- 🧲 Big Spenders & Recent Buyers account for the majority of revenue and are critical segment for loyalty efforts.
+- ⚠️ At-Risk customers form a sizeable share, representing a retention opportunity.
 
 ---
 
 ## Visual Highlights
 
-- 📌 Power BI dashboard includes:
+Power BI dashboard includes:
   - Delivery metrics across seller, state, and category
   - Top performing sellers and categories
   - Dynamic filters for segmenting customer insights
