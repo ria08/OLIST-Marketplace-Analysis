@@ -3,12 +3,7 @@
 ## Project Overview
 
 This project analyzes the Olist Brazilian eCommerce dataset to identify delivery bottlenecks, evaluate customer value, and run A/B testing experiments. The goal is to support Olist in improving conversion rates, delivery reliability, and customer retention through data-driven insights and Power BI dashboards.
-## Overview
-This repository analyzes the Olist Brazilian eCommerce dataset to uncover delivery bottlenecks, quantify customer value, and evaluate payment-method impacts on order value. Outputs include exploratory notebooks, A/B testing, RFM segmentation, and a Power BI dashboard aimed at improving delivery reliability, conversion, and retention.
 
----
-## Business Objective
-Enable Olist to reduce delivery delays, improve conversion, and grow customer lifetime value through data-driven operational and marketing decisions.
 
 ## Problem Statement
 
@@ -20,7 +15,7 @@ Olist, a Brazilian e-commerce marketplace, has received concerns from sellers re
 
 ---
 
-## Tasks & Business Objectives
+## Tasks 
 
 ### Task 1: A/B Testing — Payment Method vs Order Value
 
@@ -58,7 +53,7 @@ Identify the most valuable customers using Total Spend, Order Frequency, and Rec
 #### Metrics:
 - **Total Spend** = Price + Freight or Payment Value
 - **Order Frequency** = # of Orders per Customer
-- **Recency = Days since last purchase
+- **Recency** = Days since last purchase
 
 #### Method:
 - Applied RFM Scoring (Recency, Frequency, Monetary) using quantiles
@@ -79,14 +74,6 @@ Visualized RFM segments and generated business recommendations for retention and
 Brazilian E-Commerce Public Dataset by Olist, available on Kaggle  
 [🔗 Dataset Link](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
----
-Olist faces seller concerns about delayed deliveries and declining conversion rates. The business needs to:
-- Identify friction points in the order-to-delivery pipeline.
-- Understand how payment methods influence order value.
-- Segment customers to target retention and loyalty programs.
-
-## Business Case
-Delivery delays degrade customer trust and increase churn. By quantifying delay drivers, Olist can prioritize logistics fixes that protect revenue. Payment-method insights inform targeted incentives that increase average order value, while RFM-based segmentation focuses retention resources on the most valuable and at-risk customers.
 
 ## How It Works
 1. **Data Ingestion & Cleaning**: Load Olist tables, normalize timestamps, and engineer delivery and customer metrics.
@@ -130,10 +117,6 @@ graph TD
 └── README.md
 ```
 
-## Dataset
-Brazilian E-Commerce Public Dataset by Olist (Kaggle):
-https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-
 ## Tools & Technologies
 
 - **Python** (Pandas, NumPy, Matplotlib, Seaborn)
@@ -141,11 +124,7 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 - **A/B Testing** (T-tests)
 - **Customer Segmentation** (RFM Analysis)
 
----
-- Python (Pandas, NumPy, Matplotlib, Seaborn)
-- Power BI (KPI Cards, Bar Charts, Line Charts, Scorecards)
-- A/B Testing (T-tests)
-- Customer Segmentation (RFM Analysis)
+
 
 ## Key Business Insights
 
