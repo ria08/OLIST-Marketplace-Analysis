@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-This project analyzes the Olist Brazilian eCommerce dataset to identify delivery bottlenecks, evaluate customer value, and run A/B testing experiments. The goal is to support Olist in improving conversion rates, delivery reliability, and customer retention through data-driven insights and Power BI dashboards.
+This project analyzes the Olist Brazilian eCommerce dataset to identify delivery bottlenecks, evaluate customer value, and run A/B testing experiments. The goal is to support Olist in improving conversion rates, delivery reliability, and customer retention through data-driven insights and Power BI dashboards. 
+
+Check out the project walkthrough here: https://medium.com/@singhria.0829/turning-delivery-delays-into-data-wins-a-complete-ecommerce-analytics-project-a2abbe8b90e2
 
 
 ## Problem Statement
