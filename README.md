@@ -1,181 +1,233 @@
+# Olist Marketplace Analytics and Experimentation Platform
+
+End-to-end analytics engineering and product analytics project built on the Brazilian Olist marketplace dataset.
+
+This project transforms raw transactional data into a governed analytics warehouse and executive dashboard to diagnose marketplace maturity, retention gaps, and operational friction.
+
+It demonstrates production-style thinking across:
+- Medallion data modeling
+- Data quality governance
+- Customer lifecycle analytics
+- Experimentation design
+- Executive BI delivery
+
+---
+
+## Executive KPI Snapshot
+
+- **Total Revenue:** R$13.59M
+- **Total Orders:** 99K
+- **Unique Customers:** 96K
+- **Repeat Purchase Rate:** 3.1 percent
+- **Average Order Value:** R$136.7
+- **Average Review Score:** 4.09
+- **Fulfillment Success Rate:** 97.3 percent
+
+**Key signal:** Marketplace shows strong acquisition but weak retention.
+
+---
+
 ## Business Context
-Olist shows strong historical growth but clear signs of maturity and operational friction:
-- Growth accelerated sharply in 2017, then slowed in 2018.
-- Customer behavior is heavily one-time purchase driven.
-- Delivery delays materially impact customer satisfaction.
-- Revenue is concentrated in key states, with expansion opportunities in underpenetrated regions.
 
-This repository is structured to answer those challenges with reproducible data models, analytical queries, and executive-facing visuals.
+Olist experienced rapid growth followed by early signs of marketplace maturity. Revenue expanded sharply during 2017 but growth momentum slowed in 2018, indicating the business is transitioning from hyper-growth toward a more mature phase.
 
----
+Customer behavior is heavily skewed toward one-time purchases. Delivery performance shows a strong relationship with customer satisfaction. Revenue and customer activity remain concentrated in a few southeastern states.
 
-## Project Objectives
-1. Build a clean and scalable analytics foundation from raw CSVs.
-2. Track marketplace health across revenue, fulfillment, geography, and customer behavior.
-3. Validate core business hypotheses through SQL analysis.
-4. Segment customers using RFM to prioritize retention.
-5. Simulate and evaluate a second-purchase incentive using A/B testing logic.
-6. Deliver interactive dashboard views for business stakeholders.
+**Strategic question:** How can Olist re-accelerate growth while improving customer lifetime value?
 
 ---
 
-## Data Architecture (Medallion)
+## Data Architecture (Medallion Model)
 
-### 1) Bronze Layer (`olist_bronze`)
-Raw ingestion layer with minimal assumptions:
-- Loads source CSVs as-is.
-- Preserves source grain and nullable fields.
-- Adds audit timestamps (`_loaded_at`).
+The project follows a three-layer medallion architecture to separate raw ingestion, data quality processing, and analytics consumption.
 
-### 2) Silver Layer (`olist_silver`)
-Cleansed and standardized layer:
-- Type casting for IDs, numerics, and datetimes.
-- Text cleanup (`TRIM`, case normalization).
-- Category translation (Portuguese → English).
-- Deduplication logic (notably in reviews and geolocation).
-- Data quality filtering of null critical keys.
+![OLIST medallion architecture diagram](docs/olist-medallion-architecture.svg)
 
-### 3) Gold Layer (`olist_gold`)
-Analytics-ready star schema:
-- `fact_orders` at **order grain**.
-- Dimensions: `dim_customers`, `dim_products`, `dim_sellers`, `dim_date`.
-- Delivery and revenue metrics precomputed for BI use.
-- Primary key constraints added for model reliability.
+### Data Flow
+
+Raw CSVs
+→ Bronze Layer
+→ Silver Layer
+→ Gold Layer
+→ Power BI Dashboard
+→ Product and Growth Insights
+
+### Bronze Layer
+
+**Goal:** Preserve source fidelity.
+
+**Key features:**
+- Loads CSVs as-is
+- Minimal assumptions
+- Audit timestamps added
+- Handles messy source quirks
+
+**Notable challenge:** Empty strings in numeric columns broke CAST operations. Type conversion was intentionally deferred to the Silver layer to maintain raw data integrity.
+
+### Silver Layer
+
+**Focus:** Cleaning, standardization, and data quality enforcement.
+
+**Transformations include:**
+- Type casting and null handling
+- Text normalization
+- Portuguese-to-English category mapping
+- Deterministic deduplication
+- Geolocation standardization
+
+**Advanced fixes:**
+- Used `ROW_NUMBER` to resolve duplicate review IDs across orders
+- Mode-based geolocation deduplication reduced about one million rows to roughly nineteen thousand unique ZIP codes
+
+### Gold Layer
+
+Analytics-ready **snowflake schema** at the order grain.
+
+**Fact table**
+- `fact_orders`
+
+**Dimension tables**
+- `dim_customers`
+- `dim_products`
+- `dim_sellers`
+- `dim_date`
+
+**Engineering highlights:**
+- Pre-aggregated payment and item metrics
+- Primary key constraints enforced
+- Delivery SLA metrics precomputed
+- BI-optimized joins
+
+**Critical bug avoided:** A cartesian product inflated payments eight to twelve times and was fixed using pre-aggregation CTEs.
 
 ---
 
-## Key Analytical Tracks
+## Engineering Highlights
 
-### 1) Strategic SQL Analysis
-The SQL analysis script tests business hypotheses around:
-- Growth trajectory and monthly revenue trends.
-- Geographic concentration and whitespace markets.
-- Category revenue contribution.
-- Delivery delay impact on review outcomes.
-- One-time vs repeat customer value.
-- State-wise logistics performance.
-- Weekday vs weekend purchasing patterns.
-
-### 2) RFM Customer Segmentation (Python)
-RFM scoring is used to classify customers by:
-- **Recency** (how recently they purchased)
-- **Frequency** (how often they purchase)
-- **Monetary** (how much they spend)
-
-The segmentation supports action-oriented lifecycle strategies (retention, reactivation, loyalty).
-
-### 3) A/B Testing Simulation (Python)
-A controlled simulation evaluates a **10% off second purchase coupon** for eligible first-time buyers:
-- Randomized control/treatment split.
-- Two-proportion z-test for repeat purchase rate.
-- Lift interpretation for growth experimentation planning.
+- Built full medallion warehouse from raw ingestion to analytics consumption
+- Implemented multi-layer validation checks
+- Prevented multi-table aggregation inflation
+- Designed BI-optimized snowflake schema
+- Debugged complex Power BI filter propagation
+- Applied statistical testing for product experimentation
+- Documented real-world data quality incidents
 
 ---
 
-## Dashboard Focus Areas
-The Power BI dashboard is designed for decision-making across:
-- Revenue and order trends over time.
-- Delivery performance and delay diagnostics.
-- Customer behavior and repeat-rate indicators.
-- Segment-level contribution (RFM framing).
-- Geographic and category performance views.
+## Strategic Analytical Tracks
 
-Special attention was given to model consistency, filter behavior, and metric integrity while resolving common BI bottlenecks (filter propagation, denominator mismatches, over-filtering, and visual clarity).
+### Marketplace Health Diagnostics
+
+Growth analysis shows 2017 experienced roughly 6.5 times year-over-year growth while monthly growth in 2018 slowed to about 0 to 3 percent, indicating early maturity.
+
+Geographic analysis shows SP, RJ, and MG contribute about 64.5 percent of customers and revenue, suggesting both saturation risk and whitespace opportunities.
+
+Delivery performance analysis shows even small delays sharply reduce customer satisfaction. On-time deliveries maintain strong ratings while late deliveries show steep increases in negative reviews.
+
+### RFM Customer Segmentation
+
+Customers are classified using recency, frequency, and monetary scoring.
+
+Repeat buyers represent about 3 percent of the customer base but generate roughly 1.9 times higher lifetime value than one-time buyers. Retention is the largest monetization opportunity.
+
+### A/B Test Simulation
+
+Controlled simulation evaluates a ten percent second-purchase coupon.
+
+- **Control rate:** 2.95 percent
+- **Treatment rate:** 4.09 percent
+- **Absolute lift:** 1.14 percentage points
+- **Relative lift:** 38.6 percent
+- **P value:** less than 0.001
+
+**Decision:** Statistically significant. Recommend rollout subject to cost validation.
 
 ---
 
+## Executive Dashboard
 
-## Repository Structure
-```text
-OLIST-Marketplace-Analysis/
-├── README.md
-├── dashboard/
-│   └── OLIST_customer_analysis.pbix
-├── python/
-│   ├── AB testing.ipynb
-│   ├── rfm_customer_segmentation.ipynb
-│   └── review cleaning.py
-└── sql/
-    ├── bronze layer/
-    │   ├── 01_bronze_schema.sql
-    │   └── 01_bronze_validation.sql
-    ├── silver layer/
-    │   ├── 02_silver_schema.sql
-    │   └── 02_silver_validation.sql
-    ├── gold layer/
-    │   ├── 03_gold_fact_orders.sql
-    │   ├── 03_gold_dim_customers.sql
-    │   ├── 03_gold_dim_products.sql
-    │   ├── 03_gold_dim_sellers.sql
-    │   ├── 03_gold_dim_date.sql
-    │   ├── 03_gold_add_constraints.sql
-    │   └── 03_gold_validation.sql
-    └── analysis/
-        └── 04_analytical_queries.sql
-```
+The Power BI model was strengthened through multiple debugging cycles.
+
+**Major issues solved:**
+- Fixed filter propagation between Orders and Order Items
+- Resolved denominator mismatches in customer metrics
+- Diagnosed `TREATAS` over-filtering
+- Corrected scatter plot aggregation grain
+- Improved visual density and layout
+
+These improvements strengthened metric integrity and stakeholder trust.
+
+---
+
+## Core Business Insights
+
+- Marketplace acquisition is strong but retention is critically low
+- Delivery performance is the highest-impact customer experience lever
+- Growth is geographically concentrated and nearing saturation
+- Category mix is diversified with no single dominant segment
+- Repeat customers represent the highest ROI growth lever
+
+---
+
+## Technical Best Practices Demonstrated
+
+- Defensive SQL using `COALESCE`, `NULLIF`, and `CASE`
+- Structured CTE-based aggregation
+- Referential integrity validation
+- Layer-wise row count auditing
+- Documentation-driven development
+
+---
+
+## Future Enhancements
+
+- Cohort retention curves
+- Customer lifetime value decomposition
+- Seller-level delay diagnostics
+- Real campaign experiment tracking
+- Item-grain fact modeling
+
+---
+
+## Tech Stack
+
+- **SQL:** MySQL 8
+- **Python:** Pandas, NumPy, SciPy
+- **BI:** Power BI
+- **Modeling:** Snowflake Schema
+- **Architecture:** Medallion
 
 ---
 
 ## How to Run
 
-### Prerequisites
-- MySQL 8+
-- Python 3.9+
-- Jupyter Notebook / JupyterLab
-- Power BI Desktop
+### SQL pipeline order
 
-### SQL Pipeline Execution Order
-Run scripts in this sequence:
-1. `sql/bronze layer/01_bronze_schema.sql`
-2. `sql/bronze layer/01_bronze_validation.sql`
-3. `sql/silver layer/02_silver_schema.sql`
-4. `sql/silver layer/02_silver_validation.sql`
-5. Gold layer scripts (`03_gold_*.sql`)
-6. `sql/analysis/04_analytical_queries.sql`
+1. `01_bronze_schema.sql`
+2. `01_bronze_validation.sql`
+3. `02_silver_schema.sql`
+4. `02_silver_validation.sql`
+5. `03_gold scripts`
+6. `04_analytical_queries.sql`
 
-### Python Analysis
-Run notebooks from the `python/` folder:
+### Python notebooks
+
 - `rfm_customer_segmentation.ipynb`
 - `AB testing.ipynb`
 
-Optional preprocessing utility:
-- `review cleaning.py` (cleans multiline review comments from order_items before loading into bronze layer for proper pr).
-
 ### Dashboard
-Open and refresh:
-- `dashboard/OLIST_customer_analysis.pbix`
+
+Open and refresh `dashboard/OLIST_customer_analysis.pbix`.
 
 ---
 
-## Core Insights Captured by This Project
-- Marketplace growth has matured; scale now requires deliberate strategic levers.
-- Delivery performance is a major driver of customer sentiment and repeat potential.
-- Retention is the biggest monetization gap; repeat buyers provide outsized value.
-- Category mix is diversified, but top categories still offer focused growth potential.
-- Geographic concentration highlights clear expansion opportunities beyond core states.
+## Dataset
 
----
-
-## Learning Outcomes
-This project demonstrates hands-on capabilities in:
-- Data warehousing and medallion modeling in SQL.
-- Data quality auditing and transformation governance.
-- Customer lifecycle analytics (RFM).
-- Experiment design and statistical evaluation for growth decisions.
-- Power BI modeling, DAX debugging, and executive storytelling.
-
----
-
-## Future Enhancements
-- Add item-level gold fact modeling for deeper seller/category diagnostics.
-- Integrate cohort retention and LTV decomposition.
-- Operationalize experiment tracking on real campaign data.
-- Extend dashboard with alerting thresholds for delivery and retention KPIs.
-
-## Dataset Used
-
-Brazilian E-Commerce Public Dataset by Olist, available on Kaggle  
+Brazilian E-Commerce Public Dataset by Olist on Kaggle.
 [🔗 Dataset Link](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
+---
 
+## Author
 
+Ria Singh
