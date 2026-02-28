@@ -1,75 +1,176 @@
-# Olist Marketplace Data Analysis & Insights
+## Business Context
+Olist shows strong historical growth but clear signs of maturity and operational friction:
+- Growth accelerated sharply in 2017, then slowed in 2018.
+- Customer behavior is heavily one-time purchase driven.
+- Delivery delays materially impact customer satisfaction.
+- Revenue is concentrated in key states, with expansion opportunities in underpenetrated regions.
 
-## Project Overview
-
-This project analyzes the Olist Brazilian eCommerce dataset to identify delivery bottlenecks, evaluate customer value, and run A/B testing experiments. The goal is to support Olist in improving conversion rates, delivery reliability, and customer retention through data-driven insights and Power BI dashboards. 
-
-Check out the project walkthrough here: https://medium.com/@singhria.0829/turning-delivery-delays-into-data-wins-a-complete-ecommerce-analytics-project-a2abbe8b90e2
-
-
-## Problem Statement
-
-Olist, a Brazilian e-commerce marketplace, has received concerns from sellers regarding delayed deliveries and declining customer conversion rates. The company aims to:
-
-- Identify friction points in the purchase-to-delivery pipeline
-- Assess the impact of payment methods on customer spending
-- Segment customers based on value for targeted loyalty strategies
+This repository is structured to answer those challenges with reproducible data models, analytical queries, and executive-facing visuals.
 
 ---
 
-## Tasks 
-
-### Task 1: A/B Testing — Payment Method vs Order Value
-
-**Objective:**  
-Determine whether customers using Credit Cards (Group A) spend more than those using Boleto/Voucher (Group B).
-
-- **Metric Used:** Average payment value
-- **Test Used:** Independent T-Test
-- **Insight:** Statistically significant difference found — credit card users spend more, indicating better targeting potential for upsell.
+## Project Objectives
+1. Build a clean and scalable analytics foundation from raw CSVs.
+2. Track marketplace health across revenue, fulfillment, geography, and customer behavior.
+3. Validate core business hypotheses through SQL analysis.
+4. Segment customers using RFM to prioritize retention.
+5. Simulate and evaluate a second-purchase incentive using A/B testing logic.
+6. Deliver interactive dashboard views for business stakeholders.
 
 ---
 
-### Task 2: Delivery Bottleneck Analysis + Top Performers
+## Data Architecture (Medallion)
 
-**Objective:**  
-Find bottlenecks in the order-to-delivery pipeline and highlight top-performing sellers and product categories.
+### 1) Bronze Layer (`olist_bronze`)
+Raw ingestion layer with minimal assumptions:
+- Loads source CSVs as-is.
+- Preserves source grain and nullable fields.
+- Adds audit timestamps (`_loaded_at`).
 
-**Key Metrics:**
-- **Avg. Delivery Duration**
-- **Approval to Shipment Lag**
-- **Delayed Delivery Rate**
-- **Revenue per Seller**
+### 2) Silver Layer (`olist_silver`)
+Cleansed and standardized layer:
+- Type casting for IDs, numerics, and datetimes.
+- Text cleanup (`TRIM`, case normalization).
+- Category translation (Portuguese → English).
+- Deduplication logic (notably in reviews and geolocation).
+- Data quality filtering of null critical keys.
 
+### 3) Gold Layer (`olist_gold`)
+Analytics-ready star schema:
+- `fact_orders` at **order grain**.
+- Dimensions: `dim_customers`, `dim_products`, `dim_sellers`, `dim_date`.
+- Delivery and revenue metrics precomputed for BI use.
+- Primary key constraints added for model reliability.
 
-**Deliverable:**  
-Interactive Power BI dashboard with KPIs, insightful charts, and executive summary.
+---
+
+## Key Analytical Tracks
+
+### 1) Strategic SQL Analysis
+The SQL analysis script tests business hypotheses around:
+- Growth trajectory and monthly revenue trends.
+- Geographic concentration and whitespace markets.
+- Category revenue contribution.
+- Delivery delay impact on review outcomes.
+- One-time vs repeat customer value.
+- State-wise logistics performance.
+- Weekday vs weekend purchasing patterns.
+
+### 2) RFM Customer Segmentation (Python)
+RFM scoring is used to classify customers by:
+- **Recency** (how recently they purchased)
+- **Frequency** (how often they purchase)
+- **Monetary** (how much they spend)
+
+The segmentation supports action-oriented lifecycle strategies (retention, reactivation, loyalty).
+
+### 3) A/B Testing Simulation (Python)
+A controlled simulation evaluates a **10% off second purchase coupon** for eligible first-time buyers:
+- Randomized control/treatment split.
+- Two-proportion z-test for repeat purchase rate.
+- Lift interpretation for growth experimentation planning.
 
 ---
 
-### Task 3: Customer Segmentation & Value Analysis
+## Dashboard Focus Areas
+The Power BI dashboard is designed for decision-making across:
+- Revenue and order trends over time.
+- Delivery performance and delay diagnostics.
+- Customer behavior and repeat-rate indicators.
+- Segment-level contribution (RFM framing).
+- Geographic and category performance views.
 
-**Objective:**  
-Identify the most valuable customers using Total Spend, Order Frequency, and Recency.
-
-#### Metrics:
-- **Total Spend** = Price + Freight or Payment Value
-- **Order Frequency** = # of Orders per Customer
-- **Recency** = Days since last purchase
-
-#### Method:
-- Applied RFM Scoring (Recency, Frequency, Monetary) using quantiles
-- Classified customers into groups:
-  - **Top Customers**
-  - **Loyal Customers**
-  - **Recent Buyers**
-  - **Frequent Buyers**
-  - **At Risk**
-
-**Deliverable:**  
-Visualized RFM segments and generated business recommendations for retention and loyalty programs.
+Special attention was given to model consistency, filter behavior, and metric integrity while resolving common BI bottlenecks (filter propagation, denominator mismatches, over-filtering, and visual clarity).
 
 ---
+
+
+## Repository Structure
+```text
+OLIST-Marketplace-Analysis/
+├── README.md
+├── dashboard/
+│   └── OLIST_customer_analysis.pbix
+├── python/
+│   ├── AB testing.ipynb
+│   ├── rfm_customer_segmentation.ipynb
+│   └── review cleaning.py
+└── sql/
+    ├── bronze layer/
+    │   ├── 01_bronze_schema.sql
+    │   └── 01_bronze_validation.sql
+    ├── silver layer/
+    │   ├── 02_silver_schema.sql
+    │   └── 02_silver_validation.sql
+    ├── gold layer/
+    │   ├── 03_gold_fact_orders.sql
+    │   ├── 03_gold_dim_customers.sql
+    │   ├── 03_gold_dim_products.sql
+    │   ├── 03_gold_dim_sellers.sql
+    │   ├── 03_gold_dim_date.sql
+    │   ├── 03_gold_add_constraints.sql
+    │   └── 03_gold_validation.sql
+    └── analysis/
+        └── 04_analytical_queries.sql
+```
+
+---
+
+## How to Run
+
+### Prerequisites
+- MySQL 8+
+- Python 3.9+
+- Jupyter Notebook / JupyterLab
+- Power BI Desktop
+
+### SQL Pipeline Execution Order
+Run scripts in this sequence:
+1. `sql/bronze layer/01_bronze_schema.sql`
+2. `sql/bronze layer/01_bronze_validation.sql`
+3. `sql/silver layer/02_silver_schema.sql`
+4. `sql/silver layer/02_silver_validation.sql`
+5. Gold layer scripts (`03_gold_*.sql`)
+6. `sql/analysis/04_analytical_queries.sql`
+
+### Python Analysis
+Run notebooks from the `python/` folder:
+- `rfm_customer_segmentation.ipynb`
+- `AB testing.ipynb`
+
+Optional preprocessing utility:
+- `review cleaning.py` (cleans multiline review comments from order_items before loading into bronze layer for proper pr).
+
+### Dashboard
+Open and refresh:
+- `dashboard/OLIST_customer_analysis.pbix`
+
+---
+
+## Core Insights Captured by This Project
+- Marketplace growth has matured; scale now requires deliberate strategic levers.
+- Delivery performance is a major driver of customer sentiment and repeat potential.
+- Retention is the biggest monetization gap; repeat buyers provide outsized value.
+- Category mix is diversified, but top categories still offer focused growth potential.
+- Geographic concentration highlights clear expansion opportunities beyond core states.
+
+---
+
+## Learning Outcomes
+This project demonstrates hands-on capabilities in:
+- Data warehousing and medallion modeling in SQL.
+- Data quality auditing and transformation governance.
+- Customer lifecycle analytics (RFM).
+- Experiment design and statistical evaluation for growth decisions.
+- Power BI modeling, DAX debugging, and executive storytelling.
+
+---
+
+## Future Enhancements
+- Add item-level gold fact modeling for deeper seller/category diagnostics.
+- Integrate cohort retention and LTV decomposition.
+- Operationalize experiment tracking on real campaign data.
+- Extend dashboard with alerting thresholds for delivery and retention KPIs.
 
 ## Dataset Used
 
@@ -77,85 +178,4 @@ Brazilian E-Commerce Public Dataset by Olist, available on Kaggle
 [🔗 Dataset Link](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 
-## How It Works
-1. **Data Ingestion & Cleaning**: Load Olist tables, normalize timestamps, and engineer delivery and customer metrics.
-2. **Exploratory Analysis**: Identify distributions, outliers, and operational trends.
-3. **A/B Testing**: Compare order values between credit card and boleto/voucher users.
-4. **Delivery Bottleneck Diagnostics**: Measure approval-to-shipment lag, delivery duration, and delay rates.
-5. **RFM Segmentation**: Score customers by recency, frequency, and monetary value.
-6. **Visualization**: Summarize findings in a Power BI dashboard.
-
-## Workflow
-```mermaid
-graph TD
-  A[Raw Olist Dataset] --> B[Cleaning & Feature Engineering]
-  B --> C[EDA & KPI Computation]
-  C --> D[A/B Testing]
-  C --> E[Delivery Bottleneck Analysis]
-  C --> F[RFM Segmentation]
-  D --> G[Insights & Recommendations]
-  E --> G
-  F --> G
-  G --> H[Power BI Dashboard]
-```
-
-## Steps to Run
-1. **Clone the repository**.
-2. **Open notebooks** in order:
-   - `notebooks/EDA and AB Testing.ipynb`
-   - `notebooks/Delivery Bottleneck.ipynb`
-   - `notebooks/RFM.ipynb`
-3. **Refresh the Power BI dashboard** in `dashboards/ecom_dashboard.pbix`.
-
-## Project Structure
-```
-.
-├── dashboards/
-│   └── ecom_dashboard.pbix
-├── notebooks/
-│   ├── Delivery Bottleneck.ipynb
-│   ├── EDA and AB Testing.ipynb
-│   └── RFM.ipynb
-└── README.md
-```
-
-## Tools & Technologies
-
-- **Python** (Pandas, NumPy, Matplotlib, Seaborn)
-- **Power BI** (KPI Cards, Bar Charts, Line Charts, Scorecards)
-- **A/B Testing** (T-tests)
-- **Customer Segmentation** (RFM Analysis)
-
-
-
-## Key Business Insights
-
-- Credit Card users spend ~20% more on average than Boleto/Voucher users.
-- Average delivery time is 11.4 days, with a noticeable 7.7% delay rate. Increase focus on last-mile logistics to reduce delays.
-- Big Spenders & Recent Buyers account for the majority of revenue and are critical segment for loyalty efforts.
-- At-Risk customers form a sizeable share, representing a retention opportunity.
-
----
-
-## Visual Highlights
-
-Power BI dashboard includes:
-  - Delivery metrics across seller, state, and category
-  - Top performing sellers and categories
-  - Dynamic filters for segmenting customer insights
-  - Clean KPI cards for executive-level reporting
-
-- Credit card users spend ~20% more on average than boleto/voucher users, suggesting a strong upsell opportunity.
-- Average delivery time is ~11.4 days with a ~7.7% delay rate, highlighting last-mile logistics as a key improvement area.
-- High-spend and recent buyers generate a large revenue share and should be prioritized for loyalty programs.
-- At-risk customers represent a clear retention opportunity with targeted outreach.
-
-## Conclusion
-The analysis reveals clear levers to improve delivery performance and revenue: optimize shipment timelines, tailor incentives by payment method, and focus retention strategies on high-value and at-risk segments.
-
-## Improvements & Future Scope
-- **Carrier performance modeling** to predict and prevent late deliveries.
-- **Cohort and LTV analysis** to improve retention budgeting and long-term ROI.
-- **Experimentation roadmap** for shipping and pricing tests with measurable uplift.
-- **Real-time monitoring** in Power BI to track delay spikes and service-level compliance.
 
