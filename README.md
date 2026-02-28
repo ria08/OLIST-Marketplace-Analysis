@@ -81,7 +81,7 @@ Raw CSVs
 
 ### Gold Layer
 
-Analytics-ready **snowflake schema** at the order grain.
+Analytics-ready **star schema** at the order grain in database.
 
 **Fact table**
 - `fact_orders`
