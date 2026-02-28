@@ -39,15 +39,15 @@
 
   <rect x="940" y="260" width="190" height="170" class="box" fill="#ede9fe"/>
   <text x="1035" y="295" text-anchor="middle" class="h">Power BI Dashboard</text>
-  <text x="1035" y="330" text-anchor="middle" class="p">Executive KPIs</text>
-  <text x="1035" y="355" text-anchor="middle" class="p">Diagnostics</text>
-  <text x="1035" y="380" text-anchor="middle" class="p">Experiments</text>
+  <text x="1035" y="330" text-anchor="middle" class="p">R$13.59M, 99K orders</text>
+  <text x="1035" y="355" text-anchor="middle" class="p">3.1% repeat rate risk</text>
+  <text x="1035" y="380" text-anchor="middle" class="p">A/B lift: +38.6%</text>
 
   <rect x="1160" y="260" width="190" height="170" class="box" fill="#ffe4e6"/>
   <text x="1255" y="295" text-anchor="middle" class="h">Business Insights</text>
-  <text x="1255" y="330" text-anchor="middle" class="p">Retention strategy</text>
-  <text x="1255" y="355" text-anchor="middle" class="p">Delivery SLA impact</text>
-  <text x="1255" y="380" text-anchor="middle" class="p">Growth actions</text>
+  <text x="1255" y="330" text-anchor="middle" class="p">Retention-first CRM</text>
+  <text x="1255" y="355" text-anchor="middle" class="p">Reduce late delivery</text>
+  <text x="1255" y="380" text-anchor="middle" class="p">Expand beyond SE states</text>
 
   <line x1="250" y1="345" x2="280" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
   <line x1="470" y1="345" x2="500" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
