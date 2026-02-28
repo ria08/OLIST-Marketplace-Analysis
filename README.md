@@ -83,6 +83,8 @@ Raw CSVs
 
 Analytics-ready **star schema** at the order grain in database.
 
+**Modeling evolution (important):** The warehouse was intentionally designed as a star schema first in the Gold database, then represented as a snowflake model in Power BI for reporting flexibility. In the BI layer, `order_items` was brought in as a bridge table to correctly propagate filters between order-level and item-level logic.
+
 **Fact table**
 - `fact_orders`
 
@@ -97,6 +99,7 @@ Analytics-ready **star schema** at the order grain in database.
 - Primary key constraints enforced
 - Delivery SLA metrics precomputed
 - BI-optimized joins
+- RFM segmentation outputs and A/B test summary outputs were generated in Python and written back into Gold via SQLAlchemy for downstream BI consumption
 
 **Critical bug avoided:** A cartesian product inflated payments eight to twelve times and was fixed using pre-aggregation CTEs.
 
@@ -147,6 +150,13 @@ Controlled simulation evaluates a ten percent second-purchase coupon.
 ## Executive Dashboard
 
 The Power BI model was strengthened through multiple debugging cycles.
+
+**Crucial semantic model choices:**
+- Started from a star-schema-first Gold warehouse, then modeled as a snowflake in Power BI
+- Used `order_items` as a bridge table in Power BI so order-grain and item-grain analysis both remained accurate
+- Loaded `order_items` from the Silver layer specifically for item-level analysis
+- Injected Python-generated `rfm` and `ab_test_summary` tables back into the Gold database through SQLAlchemy before loading to Power BI
+- Kept `ab_test_summary` intentionally standalone (no relationships) as an insight summary table, not a filter-propagating model table
 
 **Major issues solved:**
 - Fixed filter propagation between Orders and Order Items
