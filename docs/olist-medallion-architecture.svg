@@ -1,0 +1,59 @@
+<svg width="1400" height="700" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OLIST Medallion Analytics Architecture">
+  <defs>
+    <style>
+      .title { font: 700 40px Arial, sans-serif; fill: #111; }
+      .h { font: 700 20px Arial, sans-serif; fill: #111; }
+      .p { font: 16px Arial, sans-serif; fill: #222; }
+      .box { stroke: #1f2937; stroke-width: 2; rx: 16; ry: 16; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937" />
+    </marker>
+  </defs>
+
+  <text x="700" y="70" text-anchor="middle" class="title">OLIST Medallion Analytics Architecture</text>
+
+  <rect x="60" y="260" width="190" height="170" class="box" fill="#f3f4f6"/>
+  <text x="155" y="295" text-anchor="middle" class="h">Raw CSV Sources</text>
+  <text x="155" y="330" text-anchor="middle" class="p">Orders, Items,</text>
+  <text x="155" y="355" text-anchor="middle" class="p">Customers, Reviews,</text>
+  <text x="155" y="380" text-anchor="middle" class="p">Geolocation</text>
+
+  <rect x="280" y="260" width="190" height="170" class="box" fill="#dbeafe"/>
+  <text x="375" y="295" text-anchor="middle" class="h">Bronze Layer</text>
+  <text x="375" y="330" text-anchor="middle" class="p">As-is ingestion</text>
+  <text x="375" y="355" text-anchor="middle" class="p">Audit timestamps</text>
+  <text x="375" y="380" text-anchor="middle" class="p">Source fidelity</text>
+
+  <rect x="500" y="260" width="190" height="170" class="box" fill="#fef3c7"/>
+  <text x="595" y="295" text-anchor="middle" class="h">Silver Layer</text>
+  <text x="595" y="330" text-anchor="middle" class="p">Type casting</text>
+  <text x="595" y="355" text-anchor="middle" class="p">Deduplication</text>
+  <text x="595" y="380" text-anchor="middle" class="p">Quality checks</text>
+
+  <rect x="720" y="260" width="190" height="170" class="box" fill="#dcfce7"/>
+  <text x="815" y="295" text-anchor="middle" class="h">Gold Layer</text>
+  <text x="815" y="330" text-anchor="middle" class="p">Analytics-ready</text>
+  <text x="815" y="355" text-anchor="middle" class="p">snowflake schema</text>
+  <text x="815" y="380" text-anchor="middle" class="p">fact + dimensions</text>
+
+  <rect x="940" y="260" width="190" height="170" class="box" fill="#ede9fe"/>
+  <text x="1035" y="295" text-anchor="middle" class="h">Power BI Dashboard</text>
+  <text x="1035" y="330" text-anchor="middle" class="p">Executive KPIs</text>
+  <text x="1035" y="355" text-anchor="middle" class="p">Diagnostics</text>
+  <text x="1035" y="380" text-anchor="middle" class="p">Experiments</text>
+
+  <rect x="1160" y="260" width="190" height="170" class="box" fill="#ffe4e6"/>
+  <text x="1255" y="295" text-anchor="middle" class="h">Business Insights</text>
+  <text x="1255" y="330" text-anchor="middle" class="p">Retention strategy</text>
+  <text x="1255" y="355" text-anchor="middle" class="p">Delivery SLA impact</text>
+  <text x="1255" y="380" text-anchor="middle" class="p">Growth actions</text>
+
+  <line x1="250" y1="345" x2="280" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="470" y1="345" x2="500" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="690" y1="345" x2="720" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="910" y1="345" x2="940" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1130" y1="345" x2="1160" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="700" y="560" text-anchor="middle" class="p">Three-layer medallion design separates ingestion, governance, and consumption for trustworthy analytics.</text>
+</svg>
