@@ -1093,7 +1093,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-![Dashboard Preview](business performance.png)
+![Dashboard Preview](dashboard/business performance.png)
 ```
 
 ---
@@ -1123,7 +1123,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-![Dashboard Preview](customers.png)
+![Dashboard Preview](dashboard/customers.png)
 ```
 
 ---
@@ -1151,7 +1151,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-![Dashboard Preview](products.png)
+![Dashboard Preview](dashboard/products.png)
 ```
 
 ---
@@ -1185,7 +1185,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-![Dashboard Preview](AB Test Summary.png)
+![Dashboard Preview](dashboard/AB Test Summary.png)
 ```
 ---
 
