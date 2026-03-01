@@ -81,9 +81,9 @@ Raw CSVs
 
 ### Gold Layer
 
-Analytics-ready **star schema** at the order grain in database.
+Analytics-ready curated data model at the order grain in database.
 
-**Modeling evolution (important):** The warehouse was intentionally designed as a star schema first in the Gold database, then represented as a snowflake model in Power BI for reporting flexibility. In the BI layer, `order_items` was brought in as a bridge table to correctly propagate filters between order-level and item-level logic.
+**Current modeling approach:** Gold is currently maintained as a star-schema-style analytical layer centered on `fact_orders` with reusable business dimensions. The focus is stable KPIs, reliable joins, and clean handoff into Power BI.
 
 **Fact table**
 - `fact_orders`
@@ -110,7 +110,7 @@ Analytics-ready **star schema** at the order grain in database.
 - Built full medallion warehouse from raw ingestion to analytics consumption
 - Implemented multi-layer validation checks
 - Prevented multi-table aggregation inflation
-- Designed BI-optimized snowflake schema
+- Designed BI-optimized Gold tables for executive analytics
 - Debugged complex Power BI filter propagation
 - Applied statistical testing for product experimentation
 - Documented real-world data quality incidents
@@ -145,6 +145,10 @@ Controlled simulation evaluates a ten percent second-purchase coupon.
 
 **Decision:** Statistically significant. Recommend rollout subject to cost validation.
 
+### Experimentation Note
+
+This experiment is **simulation-based** and was analyzed using a **two-proportion z-test** to compare conversion rates between control and treatment groups. In production, this framework should be run on **actual campaign data** collected from a live randomized experiment before final business rollout decisions are made.
+
 ---
 
 ## Executive Dashboard
@@ -152,11 +156,17 @@ Controlled simulation evaluates a ten percent second-purchase coupon.
 The Power BI model was strengthened through multiple debugging cycles.
 
 **Crucial semantic model choices:**
-- Started from a star-schema-first Gold warehouse, then modeled as a snowflake in Power BI
+- Started from Gold fact/dimension tables and kept relationships focused on metric correctness and filter behavior
 - Used `order_items` as a bridge table in Power BI so order-grain and item-grain analysis both remained accurate
 - Loaded `order_items` from the Silver layer specifically for item-level analysis
 - Injected Python-generated `rfm` and `ab_test_summary` tables back into the Gold database through SQLAlchemy before loading to Power BI
 - Kept `ab_test_summary` intentionally standalone (no relationships) as an insight summary table, not a filter-propagating model table
+
+**Power BI outputs (what we do and what we find):**
+- Monitor marketplace health trends and identify where growth is slowing
+- Compare first-time vs repeat behavior to surface retention gaps
+- Track delivery experience vs review outcomes to isolate service-quality drivers
+- Evaluate experiment outcomes to support evidence-based product decisions
 
 **Major issues solved:**
 - Fixed filter propagation between Orders and Order Items
@@ -204,7 +214,7 @@ These improvements strengthened metric integrity and stakeholder trust.
 - **SQL:** MySQL 8
 - **Python:** Pandas, NumPy, SciPy
 - **BI:** Power BI
-- **Modeling:** Snowflake Schema
+- **Modeling:** Star-schema-style Gold analytics layer
 - **Architecture:** Medallion
 
 ---
