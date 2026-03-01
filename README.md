@@ -1014,6 +1014,14 @@ Allows filtering in both directions:
 - Show me all orders from "Top Customers" segment
 - Show me RFM distribution for customers in Sao Paulo
 
+  **Why bidirectional relationship between fact orders and order items?**
+
+- Ensures filters propagate correctly between order-level and item-level analysis:
+- From Orders → analyze revenue, quantity, and products within selected orders  
+- From Order Items → trace back to order-level metrics like delivery performance or order count  
+- Enables accurate aggregation when slicing by product, seller, or order attributes  
+- Prevents mismatched totals between order-level KPIs and item-level visuals  
+
 Single-direction relationship would break one of these scenarios. Bidirectional is safe here because customer-to-RFM is one-to-one (no ambiguity).
 
 ### Major Issues Solved During Development
@@ -1091,7 +1099,7 @@ Using variable stores total once, preventing repeated calculations.
 - Customer State (Dropdown)
 - Product Category (Dropdown)
 
-**Screenshot Placeholder:**
+
 
 ![Dashboard Preview](./dashboard/business_performance.png)
 
@@ -1121,7 +1129,7 @@ Using variable stores total once, preventing repeated calculations.
 **Key Insight Callout Box:**
 "Majority of customers currently fall into the At Risk segment, indicating urgent need for retention interventions."
 
-**Screenshot Placeholder:**
+
 
 ![Dashboard Preview](./dashboard/customers.png)
 
@@ -1149,7 +1157,7 @@ Using variable stores total once, preventing repeated calculations.
 - State
 - Category
 
-**Screenshot Placeholder:**
+
 
 ![Dashboard Preview](./dashboard/products.png)
 
@@ -1183,9 +1191,8 @@ Using variable stores total once, preventing repeated calculations.
 - Large, bold numbers for key metrics
 - Professional table with conditional formatting
 
-**Screenshot Placeholder:**
 
-![Dashboard Preview](./dashboard/AB_Test_Summary.png)
+![Dashboard Preview](./dashboard/AB_test_summary.png)
 
 ---
 
