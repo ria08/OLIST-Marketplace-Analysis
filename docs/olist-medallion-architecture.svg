@@ -34,14 +34,14 @@
   <rect x="720" y="260" width="190" height="170" class="box" fill="#dcfce7"/>
   <text x="815" y="295" text-anchor="middle" class="h">Gold Layer</text>
   <text x="815" y="330" text-anchor="middle" class="p">Analytics-ready</text>
-  <text x="815" y="355" text-anchor="middle" class="p">snowflake schema</text>
+  <text x="815" y="355" text-anchor="middle" class="p">Star-schema Gold marts</text>
   <text x="815" y="380" text-anchor="middle" class="p">fact + dimensions</text>
 
   <rect x="940" y="260" width="190" height="170" class="box" fill="#ede9fe"/>
   <text x="1035" y="295" text-anchor="middle" class="h">Power BI Dashboard</text>
-  <text x="1035" y="330" text-anchor="middle" class="p">R$13.59M, 99K orders</text>
-  <text x="1035" y="355" text-anchor="middle" class="p">3.1% repeat rate risk</text>
-  <text x="1035" y="380" text-anchor="middle" class="p">A/B lift: +38.6%</text>
+  <text x="1035" y="330" text-anchor="middle" class="p">Snowflake semantic model</text>
+  <text x="1035" y="355" text-anchor="middle" class="p">Bridges order + item grain</text>
+  <text x="1035" y="380" text-anchor="middle" class="p">Insights for retention actions</text>
 
   <rect x="1160" y="260" width="190" height="170" class="box" fill="#ffe4e6"/>
   <text x="1255" y="295" text-anchor="middle" class="h">Business Insights</text>

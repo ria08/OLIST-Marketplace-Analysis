@@ -83,7 +83,7 @@ Raw CSVs
 
 Analytics-ready curated data model at the order grain in database.
 
-**Current modeling approach:** Gold is currently maintained as a star-schema-style analytical layer centered on `fact_orders` with reusable business dimensions. The focus is stable KPIs, reliable joins, and clean handoff into Power BI.
+**Current modeling approach:** Gold is intentionally kept as a clean star-schema-style analytical layer centered on `fact_orders` with reusable business dimensions. The focus is stable KPIs, reliable joins, and clean handoff into Power BI.
 
 **Fact table**
 - `fact_orders`
@@ -161,6 +161,11 @@ The Power BI model was strengthened through multiple debugging cycles.
 - Loaded `order_items` from the Silver layer specifically for item-level analysis
 - Injected Python-generated `rfm` and `ab_test_summary` tables back into the Gold database through SQLAlchemy before loading to Power BI
 - Kept `ab_test_summary` intentionally standalone (no relationships) as an insight summary table, not a filter-propagating model table
+
+**Why Snowflake appears in the dashboard model:**
+- We started with a star in Gold (`fact_orders` + core dimensions) for warehouse simplicity and data quality control.
+- In Power BI, additional analytical paths (especially `order_items` plus product/seller cuts) required normalized relationship branches.
+- This created a practical **snowflake-style semantic model in Power BI** (not in Gold itself) so item-level slicing and order-level KPIs stay consistent.
 
 **Power BI outputs (what we do and what we find):**
 - Monitor marketplace health trends and identify where growth is slowing
