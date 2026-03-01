@@ -1092,9 +1092,9 @@ Using variable stores total once, preventing repeated calculations.
 - Product Category (Dropdown)
 
 **Screenshot Placeholder:**
-```
+
 ![Dashboard Preview](./dashboard/business_performance.png)
-```
+
 
 ---
 
@@ -1122,9 +1122,9 @@ Using variable stores total once, preventing repeated calculations.
 "Majority of customers currently fall into the At Risk segment, indicating urgent need for retention interventions."
 
 **Screenshot Placeholder:**
-```
+
 ![Dashboard Preview](./dashboard/customers.png)
-```
+
 
 ---
 
@@ -1150,9 +1150,9 @@ Using variable stores total once, preventing repeated calculations.
 - Category
 
 **Screenshot Placeholder:**
-```
+
 ![Dashboard Preview](./dashboard/products.png)
-```
+
 
 ---
 
@@ -1184,9 +1184,9 @@ Using variable stores total once, preventing repeated calculations.
 - Professional table with conditional formatting
 
 **Screenshot Placeholder:**
-```
+
 ![Dashboard Preview](./dashboard/AB_Test_Summary.png)
-```
+
 ---
 
 ## Core Business Insights and Recommendations
