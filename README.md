@@ -52,6 +52,15 @@ Raw CSVs
 → Power BI Dashboard
 → Product and Growth Insights
 
+### Architecture Section Definitions
+
+- **RAW CSV SOURCES:** Orders, Order Items, Customers, Reviews, Geolocation
+- **BRONZE LAYER:** Raw ingestion; Audit timestamps; Source fidelity preserved
+- **SILVER LAYER:** Data type standardization; Deduplication; Data quality validation
+- **GOLD LAYER:** Analytics-ready model; Star schema (facts and dimensions); Business-ready data marts
+- **POWER BI DASHBOARD:** Semantic model layer; Order and item grain alignment; Actionable business insights
+- **BUSINESS IMPACT:** Improve customer retention; Reduce late deliveries; Support expansion beyond SE states
+
 ### Bronze Layer
 
 **Goal:** Preserve source fidelity.
