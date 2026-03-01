@@ -1175,40 +1175,6 @@ Using variable stores total once, preventing repeated calculations.
 - Business impact table with financial projections
 - Professional recommendation callout
 ```
-
----
-
-### Visual Design Standards
-
-**Color Palette:**
-
-Primary: #2563EB (Professional Blue)
-Success: #10B981 (Emerald Green)
-Warning: #F59E0B (Amber)
-Error: #EF4444 (Red)
-Background: #F8FAFC (Light Slate)
-Cards: #FFFFFF (White)
-Borders: #E2E8F0 (Light Gray)
-Text Primary: #0F172A (Dark Slate)
-Text Secondary: #475569 (Medium Slate)
-
-**Typography:**
-- Headers: Segoe UI Semibold, 14-16pt
-- Body: Segoe UI, 10-12pt
-- KPI Values: Segoe UI Semibold, 32-36pt
-
-**Card Styling:**
-- Background: White with subtle shadow
-- Border: Light gray, 8px radius
-- Padding: 12px
-- Hover: Slight elevation increase
-
-**Conditional Formatting:**
-- Revenue/Monetary: White to Green gradient
-- Recency: Green (recent) to Red (old) gradient  
-- Frequency: Light blue for repeat buyers
-- Segment colors: Consistent across all visuals
-
 ---
 
 ## Core Business Insights and Recommendations
@@ -1765,18 +1731,6 @@ Retrieved from https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 ## Author
 
 **Ria Singh**
-
-Data Analyst | Analytics Engineer
-
-**Portfolio Project Focus:**
-- End-to-end analytics engineering (Bronze to Gold)
-- Statistical experimentation and A/B testing
-- Customer behavior analysis and segmentation
-- Executive dashboard design and storytelling
-
-**Target Role:** Data Analyst / Product Analyst (12-18 LPA, Bangalore market)
-
-**Contact:** [Add your contact information]
 
 ---
 
