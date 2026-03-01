@@ -15,39 +15,39 @@
 
   <rect x="60" y="260" width="190" height="170" class="box" fill="#f3f4f6"/>
   <text x="155" y="295" text-anchor="middle" class="h">Raw CSV Sources</text>
-  <text x="155" y="330" text-anchor="middle" class="p">Orders, Items,</text>
+  <text x="155" y="330" text-anchor="middle" class="p">Orders, Order Items,</text>
   <text x="155" y="355" text-anchor="middle" class="p">Customers, Reviews,</text>
   <text x="155" y="380" text-anchor="middle" class="p">Geolocation</text>
 
   <rect x="280" y="260" width="190" height="170" class="box" fill="#dbeafe"/>
   <text x="375" y="295" text-anchor="middle" class="h">Bronze Layer</text>
-  <text x="375" y="330" text-anchor="middle" class="p">As-is ingestion</text>
+  <text x="375" y="330" text-anchor="middle" class="p">Raw ingestion</text>
   <text x="375" y="355" text-anchor="middle" class="p">Audit timestamps</text>
-  <text x="375" y="380" text-anchor="middle" class="p">Source fidelity</text>
+  <text x="375" y="380" text-anchor="middle" class="p">Source fidelity preserved</text>
 
   <rect x="500" y="260" width="190" height="170" class="box" fill="#fef3c7"/>
   <text x="595" y="295" text-anchor="middle" class="h">Silver Layer</text>
-  <text x="595" y="330" text-anchor="middle" class="p">Type casting</text>
+  <text x="595" y="330" text-anchor="middle" class="p">Data type standardization</text>
   <text x="595" y="355" text-anchor="middle" class="p">Deduplication</text>
-  <text x="595" y="380" text-anchor="middle" class="p">Quality checks</text>
+  <text x="595" y="380" text-anchor="middle" class="p">Data quality validation</text>
 
   <rect x="720" y="260" width="190" height="170" class="box" fill="#dcfce7"/>
   <text x="815" y="295" text-anchor="middle" class="h">Gold Layer</text>
-  <text x="815" y="330" text-anchor="middle" class="p">Analytics-ready</text>
-  <text x="815" y="355" text-anchor="middle" class="p">Star-schema Gold marts</text>
-  <text x="815" y="380" text-anchor="middle" class="p">fact + dimensions</text>
+  <text x="815" y="330" text-anchor="middle" class="p">Analytics-ready model</text>
+  <text x="815" y="355" text-anchor="middle" class="p">Star schema (facts and dimensions)</text>
+  <text x="815" y="380" text-anchor="middle" class="p">Business-ready data marts</text>
 
   <rect x="940" y="260" width="190" height="170" class="box" fill="#ede9fe"/>
   <text x="1035" y="295" text-anchor="middle" class="h">Power BI Dashboard</text>
-  <text x="1035" y="330" text-anchor="middle" class="p">Snowflake semantic model</text>
-  <text x="1035" y="355" text-anchor="middle" class="p">Bridges order + item grain</text>
-  <text x="1035" y="380" text-anchor="middle" class="p">Insights for retention actions</text>
+  <text x="1035" y="330" text-anchor="middle" class="p">Semantic model layer</text>
+  <text x="1035" y="355" text-anchor="middle" class="p">Order and item grain alignment</text>
+  <text x="1035" y="380" text-anchor="middle" class="p">Actionable business insights</text>
 
   <rect x="1160" y="260" width="190" height="170" class="box" fill="#ffe4e6"/>
-  <text x="1255" y="295" text-anchor="middle" class="h">Business Insights</text>
-  <text x="1255" y="330" text-anchor="middle" class="p">Retention-first CRM</text>
-  <text x="1255" y="355" text-anchor="middle" class="p">Reduce late delivery</text>
-  <text x="1255" y="380" text-anchor="middle" class="p">Expand beyond SE states</text>
+  <text x="1255" y="295" text-anchor="middle" class="h">Business Impact</text>
+  <text x="1255" y="330" text-anchor="middle" class="p">Improve customer retention</text>
+  <text x="1255" y="355" text-anchor="middle" class="p">Reduce late deliveries</text>
+  <text x="1255" y="380" text-anchor="middle" class="p">Support expansion beyond SE states</text>
 
   <line x1="250" y1="345" x2="280" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
   <line x1="470" y1="345" x2="500" y2="345" stroke="#1f2937" stroke-width="3" marker-end="url(#arrow)"/>
