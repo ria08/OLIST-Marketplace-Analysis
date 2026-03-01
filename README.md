@@ -925,13 +925,40 @@ Phase 3 (Month 2+): Full rollout to 100% of first-time buyers
 
 **Core Tables and Relationships:**
 
-```
-dim_customers (1) ──────► (*) fact_orders (1) ──────► (*) order_items (bridge)
-      ↕ (bidirectional)                                       │        │
-rfm_segments (1)                                              │        │
-                                                              ▼        ▼
-dim_date (1) ───────────► (*) fact_orders           dim_products  dim_sellers
-                                                          (1)         (1)
+## Data Model Relationships
+
+```mermaid
+flowchart LR
+
+%% =========================
+%% ACTIVE RELATIONSHIPS
+%% =========================
+
+Customers["Customers (1)"]
+Orders["Orders (*)"]
+OrderItems["Order Items (*)"]
+Products["Products (1)"]
+Sellers["Sellers (1)"]
+Date["Date (1)"]
+
+Customers -- "1 : * (Bidirectional)" --> Orders
+Date -- "1 : * (Single)" --> Orders
+Orders -- "1 : * (Bidirectional)" --> OrderItems
+Products -- "* : 1 (Single)" --> OrderItems
+Sellers -- "* : 1 (Single)" --> OrderItems
+
+%% =========================
+%% INACTIVE RELATIONSHIPS
+%% =========================
+
+CustomerRFM["Customer RFM (1)"]
+ABResults["AB Test Results"]
+ABSummary["AB Test Summary Table"]
+
+CustomerRFM -. "1 : 1 (Inactive)" .-> Customers
+ABResults -. "Disconnected (Inactive)" .-> Orders
+ABSummary -. "Disconnected (Inactive)" .-> Orders
+
 ```
 
 **Relationship Details:**
@@ -951,7 +978,7 @@ dim_date (1) ───────────► (*) fact_orders           dim_
 4. **dim_date → fact_orders:** One-to-many (order_purchase_date)
    - Enables time-based filtering and hierarchies
 
-5. **fact_orders → order_items:** One-to-many (order_id)
+5. **fact_orders → order_items:** Many-to-many (order_id)
    - Bridge table for product and seller analysis
    - Loaded from Silver layer (not Gold) to avoid duplication
 
@@ -1066,11 +1093,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-[Executive Overview Dashboard Screenshot]
-- Clean layout with KPI cards at top
-- 2x2 grid of visuals below
-- Slicers on left sidebar
-- Professional color scheme with blue/green accents
+![Dashboard Preview](business performance.png)
 ```
 
 ---
@@ -1100,11 +1123,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-[Customer Analytics Dashboard Screenshot]
-- RFM segments visualized in multiple dimensions
-- Scatter plot showing customer behavior clusters
-- Table with green/red conditional formatting
-- Clean professional layout
+![Dashboard Preview](customers.png)
 ```
 
 ---
@@ -1132,10 +1151,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-[Product & Geography Dashboard Screenshot]
-- Treemap showing category hierarchy
-- Brazil map with state-level shading
-- Geographic and category analysis side-by-side
+![Dashboard Preview](products.png)
 ```
 
 ---
@@ -1169,11 +1185,7 @@ Using variable stores total once, preventing repeated calculations.
 
 **Screenshot Placeholder:**
 ```
-[A/B Test Results Dashboard Screenshot]
-- Clear visual comparison of control vs treatment
-- Statistical significance prominently displayed
-- Business impact table with financial projections
-- Professional recommendation callout
+![Dashboard Preview](AB Test Summary.png)
 ```
 ---
 
