@@ -1,4 +1,4 @@
-# Olist Marketplace Analytics and Experimentation Platform
+# Olist Marketplace ETL and Analytics
 
 ## Project Overview
 
