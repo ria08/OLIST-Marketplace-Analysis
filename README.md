@@ -1,15 +1,5 @@
 # Olist Marketplace ETL and Analytics
 
-## Project Overview
-
-This project delivers a complete analytical solution for Olist, a Brazilian marketplace aggregator that connects small merchants to major e-commerce channels. Built on 2+ years of transactional data spanning 99,000 orders and 96,000 customers, this analysis transforms raw business transactions into strategic intelligence through modern data engineering and product analytics practices.
-
-The solution addresses a critical business inflection point: Olist achieved rapid customer acquisition during 2017 hyper-growth but faces a retention crisis threatening sustainable profitability. With 97% of customers making only one purchase, the platform requires evidence-based interventions to unlock customer lifetime value and reignite revenue growth.
-
-This project demonstrates production-grade analytics engineering across the full data lifecycle: ingestion, quality governance, dimensional modeling, customer behavior analysis, statistical experimentation, and executive visualization. The deliverable is an actionable intelligence platform enabling data-driven decisions on retention strategy, operational improvements, and market expansion.
-
----
-
 ## Business Context and Problem Statement
 
 ### Market Position
