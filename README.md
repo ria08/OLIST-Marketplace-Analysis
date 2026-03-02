@@ -1645,10 +1645,6 @@ olist-analytics/
 │   └── AB_testing.ipynb                  # A/B test simulation
 ├── dashboard/
 │   └── OLIST_customer_analysis.pbix      # Power BI dashboard
-├── docs/
-│   ├── data_dictionary.md            # Table and column definitions
-│   ├── business_findings.md          # Detailed analysis results
-│   └── technical_decisions.md        # Architecture choices
 └── README.md                         # This file
 ```
 
