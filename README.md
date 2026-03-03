@@ -275,7 +275,7 @@ Offering 10% discount coupon for second purchase (sent 24hrs after first order, 
 **Key relationships:**
 - `dim_customers` ↔ `rfm_segments` (1:1, bidirectional)
 - `dim_customers` → `fact_orders` (Many:1)
-- `fact_orders` → `order_items` (1:Many, bridge)
+- `fact_orders` → `order_items` (1:Many, bidirectional, bridge)
 - `order_items` → `dim_products`, `dim_sellers` (Many:1)
 
 **Critical decisions:**
