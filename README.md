@@ -292,12 +292,16 @@ Offering 10% discount coupon for second purchase (sent 24hrs after first order, 
 - Revenue by quarter
 - Top 5 categories
 
+  ![Business performance dashboard](dashboard/business_performance.png)
+
 **Page 2: Customer Analytics**
 - One-time vs repeat breakdown
 - RFM segment distribution
 - Revenue contribution by segment
 - Customer behavior scatter (Recency vs Monetary)
 - Segment profile table with conditional formatting
+
+  ![Customer analytics dashboard](dashboard/customers.png)
 
 **Page 3: Product & Geography**
 - Top category and state KPIs
@@ -307,11 +311,15 @@ Offering 10% discount coupon for second purchase (sent 24hrs after first order, 
 - Brazil geographic map
 - Top 10 categories by volume
 
+  ![Product and geography dashboard](dashboard/products.png)
+
 **Page 4: A/B Test Results**
 - Control vs treatment comparison
 - Statistical significance indicators
 - Business impact table
 - ROI and annual projection callouts
+  
+![A/B testing dashboard](dashboard/AB_test_summary.png)
 
 
 ---
