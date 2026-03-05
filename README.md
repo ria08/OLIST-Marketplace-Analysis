@@ -2,7 +2,7 @@
 
 End-to-end data analytics solution for Brazilian marketplace Olist, transforming 99K orders into strategic insights through data engineering, customer segmentation, and statistical experimentation.
 
-**Key Achievement:** Identified R$11.7M retention opportunity and validated 186% ROI intervention through A/B testing.
+**Key Achievement:** Identified R$4.6M retention opportunity and validated a retention strategy achieving 186% ROI (R$11,700 monthly net gain).
 
 ---
 
@@ -27,7 +27,7 @@ Built production-grade analytics platform demonstrating:
 
 | Metric | Value |
 |--------|-------|
-| Revenue Opportunity | R$11.7M annually (at 20% retention) |
+| Revenue Opportunity | R$4.6M (Recent Buyers full conversion) |
 | ROI on Coupon Test | 186% |
 | Net Monthly Gain | R$11,700 per 10K customers |
 | Statistical Significance | p < 0.001 (highly significant) |
@@ -114,7 +114,7 @@ Raw CSV Files (9 tables)
 **Impact:**
 - Repeat buyer LTV: R$260
 - One-time buyer LTV: R$138
-- Annual opportunity loss: R$11.7M if retention reaches 20%
+- Revenue opportunity: R$4.6M if Recent Buyers (30,712 customers) convert to repeat buyers
 
 **Root Causes:**
 - No post-purchase engagement
