@@ -2,7 +2,7 @@
 
 End-to-end data analytics solution for Brazilian marketplace Olist, transforming 99K orders into strategic insights through data engineering, customer segmentation, and statistical experimentation.
 
-**Key Achievement:** Identified R$4.6M retention opportunity and validated a retention strategy achieving 186% ROI (R$11,700 monthly net gain).
+**Key Achievement:** Identified R$4.6M retention opportunity and validated a retention strategy opportunity that can achieve 186% ROI (R$11,700 monthly net gain).
 
 ---
 
