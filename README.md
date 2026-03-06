@@ -11,7 +11,7 @@ End-to-end data analytics solution for Brazilian marketplace Olist, transforming
 ### Business Problem
 
 Olist experienced rapid growth in 2017 (554% YoY) but faced severe retention crisis threatening sustainable profitability:
-- **97% one-time buyer rate** vs 20-30% industry benchmark
+- **97% one-time buyer rate** vs 25-30% industry benchmark
 - Growth plateau in 2018 (0-3% monthly)
 - Repeat customers generate 1.9x higher lifetime value but represent only 3% of base
 
