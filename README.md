@@ -471,7 +471,10 @@ olist-analytics/
 │   └── AB_testing.ipynb
 ├── dashboard/
 │   └── OLIST_customer_analysis.pbix
-└── README.md
+├── README.md
+├── requirements.txt
+├── .env.example
+└── .gitignore
 ```
 
 ---
@@ -523,6 +526,11 @@ jupyter notebook python/AB_testing.ipynb
 - Review 4 dashboard pages
 
 **Expected runtime:** 15-20 minutes total
+
+## Security
+
+Database credentials are stored using environment variables (.env) 
+and are not committed to the repository.
 
 ---
 
