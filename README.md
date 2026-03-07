@@ -277,7 +277,7 @@ In production deployment, this would be replaced with actual monthly acquisition
 
 ### Semantic Model
 
-**Architecture:** Snowflake schema with bridge table
+**Architecture:** Advanced star schema with bridge table
 - `fact_orders` at center (order grain)
 - `order_items` as bridge for product/seller analysis
 - RFM segments via bidirectional relationship to customers
