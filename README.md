@@ -515,7 +515,7 @@ mysql -u root -p olist_gold < sql/04_analytical_queries.sql
 
 **4. Run Python analysis:**
 ```bash
-pip install pandas numpy scipy matplotlib seaborn sqlalchemy pymysql
+pip install -r requirements.txt
 jupyter notebook python/rfm_customer_segmentation.ipynb
 jupyter notebook python/AB_testing.ipynb
 ```
