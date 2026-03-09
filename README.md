@@ -142,6 +142,44 @@ Raw CSV Files (9 tables)
 
 ---
 
+## Data Quality & Outlier Analysis
+
+### Statistical Outlier Detection
+
+Performed comprehensive outlier analysis on `fact_orders` metrics using **order_revenue** (product value only, excluding freight) for consistency with RFM analysis.
+
+#### Order Values
+
+**Distribution:**
+- Range: R$10 - R$13,440
+- Mean: R$142 (consistent with RFM)
+- **~1% of orders exceed R$1,000** (~1,140 orders)
+
+**Decision: RETAINED ALL VALUES**
+
+**Rationale:**
+1. High-value orders are legitimate purchases (electronics, furniture)
+2. Only 1% exceed R$1,000 - minimal impact on averages
+3. RFM uses quintile-based scoring (robust to outliers)
+4. Removing would misrepresent high-value customer segment
+
+#### Delivery Times
+
+**Distribution:**
+- **~4,000 orders (4%) took over 30 days**
+- **298 orders (0.3%) took over 60 days**
+- Maximum: 100+ days
+
+**Decision: RETAINED ALL VALUES**
+
+**Rationale:**
+1. Extreme delays are real operational failures, not errors
+2. Critical evidence for retention crisis analysis
+3. Validates "delivery kills satisfaction" hypothesis
+4. Essential for identifying improvement areas
+
+---
+
 ## RFM Customer Segmentation
 
 **Methodology:** Quintile-based scoring (1-5) on Recency, Frequency, Monetary dimensions. Customers classified using rule-based logic prioritizing actual repeat behavior.
