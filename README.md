@@ -504,9 +504,11 @@ olist-analytics/
 │   ├── 03_gold_dimensions.sql
 │   ├── 03_gold_constraints.sql
 │   └── 04_analytical_queries.sql
+|   └── 04_outlier_analysis.sql
 ├── python/
 │   ├── rfm_customer_segmentation.ipynb
 │   └── AB_testing.ipynb
+|   └── review_cleaning.py
 ├── dashboard/
 │   └── OLIST_customer_analysis.pbix
 ├── README.md
